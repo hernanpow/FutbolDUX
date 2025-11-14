@@ -7,13 +7,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
-
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("API de Gestión de Equipos de Fútbol")
+                        .title("API FutbolApiChallenge")
                         .version("1.0")
-                        .description("Documentación de la API para gestionar equipos, jugadores y partidos."));
+                        .description("Documentación de la API Equipos para la prueba técnica de DUX"));
     }
 }

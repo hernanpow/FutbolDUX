@@ -17,4 +17,16 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse("Autenticación fallida", HttpStatus.UNAUTHORIZED.value());
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse("Ocurrió un error inesperado", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
